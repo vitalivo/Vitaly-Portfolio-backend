@@ -1,0 +1,13 @@
+{
+  "name": "vitaly-portfolio-backend",
+  "version": "1.0.0",
+  "description": "Django backend for Vitaly's portfolio",
+  "scripts": {
+    "start": "gunicorn config.wsgi:application --bind 0.0.0.0:$PORT",
+    "migrate": "python manage.py migrate",
+    "collectstatic": "python manage.py collectstatic --noinput"
+  },
+  "engines": {
+    "python": "3.11.x"
+  }
+}
