@@ -1,4 +1,3 @@
-
 from .base import *
 import dj_database_url
 import os
@@ -7,34 +6,44 @@ import os
 DEBUG = False
 SECRET_KEY = config('SECRET_KEY')
 
-# ✅ ДОМЕНЫ (обновим после развертывания)
+# ✅ ДОМЕНЫ
 ALLOWED_HOSTS = [
-    'vitaly-portfolio-backend.railway.app',
-    'vitalyportfolio-api.railway.app',
+    'alluring-flow-production.up.railway.app',  # ваш Railway URL
+    '.railway.app',
     'vitalyportfolio.vercel.app',
     '.vercel.app',
-    '.railway.app',
     'localhost',
     '127.0.0.1',
+]
+
+# ✅ ПОЛНЫЙ MIDDLEWARE С WHITENOISE
+MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # ✅ Добавляем WhiteNoise
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
 # ✅ CORS ДЛЯ ПРОДАКШЕНА
 CORS_ALLOWED_ORIGINS = [
     "https://vitalyportfolio.vercel.app",
-    "https://vitaly-portfolio-frontend.vercel.app",
-    "http://localhost:3000",  # для разработки
+    "http://localhost:3000",
 ]
-
 CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOW_CREDENTIALS = True
 
 CSRF_TRUSTED_ORIGINS = [
     "https://vitalyportfolio.vercel.app",
-    "https://vitaly-portfolio-frontend.vercel.app",
-    "https://vitaly-portfolio-backend.railway.app",
+    "https://alluring-flow-production.up.railway.app",
 ]
 
-# ✅ БАЗА ДАННЫХ (Railway PostgreSQL)
+# ✅ БАЗА ДАННЫХ
 DATABASES = {
     'default': dj_database_url.config(
         default=config('DATABASE_URL'),
@@ -43,41 +52,27 @@ DATABASES = {
     )
 }
 
-# ✅ СТАТИЧЕСКИЕ ФАЙЛЫ с WhiteNoise
-MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
-
+# ✅ СТАТИЧЕСКИЕ ФАЙЛЫ
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# ✅ МЕДИА ФАЙЛЫ
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
-
-# ✅ БЕЗОПАСНОСТЬ
-SECURE_SSL_REDIRECT = True
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-SECURE_BROWSER_XSS_FILTER = True
-SECURE_CONTENT_TYPE_NOSNIFF = True
-X_FRAME_OPTIONS = 'DENY'
+# ✅ EMAIL
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = config('GMAIL_USER')
+EMAIL_HOST_PASSWORD = config('GMAIL_APP_PASSWORD')
 
 # ✅ ЛОГИРОВАНИЕ
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
-    'formatters': {
-        'verbose': {
-            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
-            'style': '{',
-        },
-    },
     'handlers': {
         'console': {
             'level': 'INFO',
             'class': 'logging.StreamHandler',
-            'formatter': 'verbose',
         },
     },
     'root': {
