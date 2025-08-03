@@ -2,8 +2,8 @@
 builder = "NIXPACKS"
 
 [deploy]
-healthcheckPath = "/api/health/"  # ✅ ИСПРАВЛЕНО!
-healthcheckTimeout = 300
+
+
 restartPolicyType = "ON_FAILURE"
 
 [env]
