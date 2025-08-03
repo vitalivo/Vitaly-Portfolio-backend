@@ -216,7 +216,7 @@ GMAIL_APP_PASSWORD = config('GMAIL_APP_PASSWORD', default='avsx tsjl brds cmlf')
 RESEND_API_KEY = config('RESEND_API_KEY', default='re_XD4M64CE_G3U51vTindYeXuVN4XdaRuds')
 
 # 🔧 TELEGRAM BOT НАСТРОЙКИ
-TELEGRAM_BOT_TOKEN = config('TELEGRAM_BOT_TOKEN')
+TELEGRAM_BOT_TOKEN = config('TELEGRAM_BOT_TOKEN', default='')
 TELEGRAM_CHAT_ID = config('TELEGRAM_CHAT_ID', default='769259836')
 
 # Celery Configuration
