@@ -14,3 +14,40 @@ python-decouple==3.8
 django-extensions==3.2.3
 django-filter==23.3
 sentry-sdk==1.38.0
+
+# Database
+psycopg2-binary>=2.9.7
+dj-database-url>=2.1.0
+
+# Configuration
+python-decouple>=3.8
+
+# API Documentation
+drf-spectacular>=0.26.5
+
+# Internationalization
+django-modeltranslation>=0.18.11
+
+# Utilities
+django-extensions>=3.2.3
+
+
+# ✅ ДОБАВЬТЕ ЭТУ СТРОКУ:
+requests>=2.31.0
+
+# ✅ УЖЕ ЕСТЬ В КОДЕ (проверьте):
+python-telegram-bot>=20.0
+resend>=0.6.0
+
+# Email
+django-anymail>=10.2
+
+# Caching
+django-redis>=5.4.0
+redis>=5.0.0
+
+# Celery (если используется)
+celery>=5.3.0
+
+# Utils
+python-slugify>=8.0.1
