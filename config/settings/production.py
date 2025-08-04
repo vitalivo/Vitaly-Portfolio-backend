@@ -16,6 +16,7 @@ ALLOWED_HOSTS = [
     '.railway.app',
     'localhost',
     '127.0.0.1',
+    '*',
 ]
 
 # ✅ CORS ДЛЯ ПРОДАКШЕНА
