@@ -7,16 +7,11 @@ import os
 DEBUG = False
 SECRET_KEY = config('SECRET_KEY', default='django-insecure-temporary-key-for-railway-deployment-2024')
 
-# ✅ ДОМЕНЫ (обновим после развертывания)
+# Убираем Railway домены:
 ALLOWED_HOSTS = [
-    # 'vitaly-portfolio-backend-production.up.railway.app',
-    # 'vitalyportfolio-api.railway.app',
-    # 'vitalyportfolio.vercel.app',
-    # '.vercel.app',
-    # '.railway.app',
-    # 'localhost',
-    # '127.0.0.1',
-    '*',
+    '.vercel.app',           # Для Vercel
+    'localhost',
+    '127.0.0.1',
 ]
 
 # ✅ CORS ДЛЯ ПРОДАКШЕНА
@@ -40,7 +35,7 @@ import dj_database_url
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgresql://postgres:ByFWTjoIGUbRXjHpLDAMFEUnmTAIgcme@postgres.railway.internal:5432/railway',
+        default=config('DATABASE_URL'),
         conn_max_age=600,
         conn_health_checks=True,
     )
