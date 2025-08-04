@@ -19,7 +19,7 @@ CORS_ALLOWED_ORIGINS = [
     "https://vitaly-portfolio1.vercel.app",  # ← СТАРЫЙ URL (на всякий случай)
 ]
 
-CORS_ALLOW_ALL_ORIGINS = False  # ← Возвращаем безопасность# ← БЕЗОПАСНОСТЬ
+CORS_ALLOW_ALL_ORIGINS = True  # ← Возвращаем безопасность# ← БЕЗОПАСНОСТЬ
 CORS_ALLOW_CREDENTIALS = True
 
 # ✅ CSRF
