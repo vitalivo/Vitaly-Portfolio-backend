@@ -1,59 +1,60 @@
-
+# config/settings/production.py
 from .base import *
-import dj_database_url
 import os
+from decouple import config
 
-# ✅ БЕЗОПАСНОСТЬ
 DEBUG = False
-SECRET_KEY = config('SECRET_KEY', default='django-insecure-temporary-key-for-railway-deployment-2024')
+SECRET_KEY = config('SECRET_KEY', default='django-insecure-temporary-key')
 
-# Убираем Railway домены:
+# ✅ ALLOWED_HOSTS
 ALLOWED_HOSTS = [
-    '.vercel.app',           # Для Vercel
+    '.vercel.app',
     'localhost',
     '127.0.0.1',
 ]
 
-# ✅ CORS ДЛЯ ПРОДАКШЕНА
+# config/settings/production.py
 CORS_ALLOWED_ORIGINS = [
-    "https://vitalyportfolio.vercel.app",
-    "https://vitaly-portfolio-frontend.vercel.app",
-    "http://localhost:3000",  # для разработки
+    "https://vitaly-portfolio-frontend-lushchb1r-vitalivo-gmailcoms-projects.vercel.app",  # ← НОВЫЙ URL
+    "https://vitaly-portfolio1.vercel.app",  # ← СТАРЫЙ URL (на всякий случай)
 ]
 
-CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOW_ALL_ORIGINS = False  # ← Возвращаем безопасность# ← БЕЗОПАСНОСТЬ
 CORS_ALLOW_CREDENTIALS = True
 
+# ✅ CSRF
 CSRF_TRUSTED_ORIGINS = [
-    "https://vitalyportfolio.vercel.app",
-    "https://vitaly-portfolio-frontend.vercel.app",
-    "https://vitaly-portfolio-backend.railway.app",
+    "https://vitaly-portfolio1.vercel.app",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
 ]
 
-# ✅ БАЗА ДАННЫХ (Railway PostgreSQL)
-import dj_database_url
-
+# ✅ БАЗА ДАННЫХ (Neon PostgreSQL)
 DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL'),
-        conn_max_age=600,
-        conn_health_checks=True,
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('PGDATABASE'),
+        'USER': os.environ.get('PGUSER'),
+        'PASSWORD': os.environ.get('PGPASSWORD'),
+        'HOST': os.environ.get('PGHOST'),
+        'PORT': os.environ.get('PGPORT', 5432),
+        'OPTIONS': {
+            'sslmode': 'require',
+        },
+    }
 }
 
-# ✅ СТАТИЧЕСКИЕ ФАЙЛЫ с WhiteNoise
-# MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
-
+# ✅ СТАТИЧЕСКИЕ ФАЙЛЫ - ОТКЛЮЧАЕМ ДЛЯ VERCEL
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_ROOT = None
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
-# ✅ МЕДИА ФАЙЛЫ
+# ✅ МЕДИА ФАЙЛЫ - ОТКЛЮЧАЕМ ДЛЯ VERCEL
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = None
 
-# ✅ БЕЗОПАСНОСТЬ
-SECURE_SSL_REDIRECT = True
+# ✅ БЕЗОПАСНОСТЬ ДЛЯ VERCEL
+SECURE_SSL_REDIRECT = False  # ← ВАЖНО: False для Vercel
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
