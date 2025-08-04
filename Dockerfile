@@ -16,7 +16,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Собираем статику
-RUN python manage.py collectstatic --noinput --settings=config.settings.production || true
+RUN python manage.py collectstatic --noinput --settings=config.settings || true
 
 # Порт
 EXPOSE 8000
