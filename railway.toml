@@ -7,5 +7,5 @@ builder = "NIXPACKS"
 restartPolicyType = "ON_FAILURE"
 
 [env]
-DJANGO_SETTINGS_MODULE = "config.settings.production"
+DJANGO_SETTINGS_MODULE = "config.settings"
 PYTHONPATH = "/app"
