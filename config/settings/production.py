@@ -19,7 +19,7 @@ CORS_ALLOWED_ORIGINS = [
     "https://vitaly-portfolio1.vercel.app",  # ← СТАРЫЙ URL (на всякий случай)
 ]
 
-CORS_ALLOW_ALL_ORIGINS = True  # ← Возвращаем безопасность# ← БЕЗОПАСНОСТЬ
+CORS_ALLOW_ALL_ORIGINS = False  # ← Возвращаем безопасность# ← БЕЗОПАСНОСТЬ
 CORS_ALLOW_CREDENTIALS = True
 
 # ✅ CSRF
@@ -31,17 +31,10 @@ CSRF_TRUSTED_ORIGINS = [
 
 # ✅ БАЗА ДАННЫХ (Neon PostgreSQL)
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('PGDATABASE'),
-        'USER': os.environ.get('PGUSER'),
-        'PASSWORD': os.environ.get('PGPASSWORD'),
-        'HOST': os.environ.get('PGHOST'),
-        'PORT': os.environ.get('PGPORT', 5432),
-        'OPTIONS': {
-            'sslmode': 'require',
-        },
-    }
+    'default': dj_database_url.config(
+        default='postgresql://neondb_owner:npg_zdswc0SZrek6@ep-hidden-shadow-ab4n19rj-pooler.eu-west-2.aws.neon.tech/neondb?sslmode=require',
+        conn_max_age=600,
+    )
 }
 
 # ✅ СТАТИЧЕСКИЕ ФАЙЛЫ - ОТКЛЮЧАЕМ ДЛЯ VERCEL
