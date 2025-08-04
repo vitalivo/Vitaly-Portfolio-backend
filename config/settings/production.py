@@ -9,7 +9,7 @@ SECRET_KEY = config('SECRET_KEY', default='django-insecure-temporary-key-for-rai
 
 # ✅ ДОМЕНЫ (обновим после развертывания)
 ALLOWED_HOSTS = [
-    'vitaly-portfolio-backend.railway.app',
+    'vitaly-portfolio-backend-production.up.railway.app',
     'vitalyportfolio-api.railway.app',
     'vitalyportfolio.vercel.app',
     '.vercel.app',
