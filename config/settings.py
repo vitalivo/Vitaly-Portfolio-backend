@@ -5,8 +5,9 @@ import os
 
 # ✅ БЕЗОПАСНОСТЬ
 DEBUG = False
-SECRET_KEY = config('SECRET_KEY')
-
+SECRET_KEY = 'с'
+GMAIL_USER = 'vitalivo@gmail.com'
+GMAIL_APP_PASSWORD = 'avsx tsjl brds cmlf'
 # ✅ ДОМЕНЫ (обновим после развертывания)
 ALLOWED_HOSTS = [
     'vitaly-portfolio-backend.railway.app',

@@ -5,7 +5,7 @@ import os
 
 # ✅ БЕЗОПАСНОСТЬ
 DEBUG = False
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = config('SECRET_KEY', default='django-insecure-temporary-key-for-railway-deployment-2024')
 
 # ✅ ДОМЕНЫ (обновим после развертывания)
 ALLOWED_HOSTS = [
