@@ -18,6 +18,9 @@ COPY . .
 # Собираем статику
 RUN python manage.py collectstatic --noinput --settings=config.settings || true
 
+# ПРИНУДИТЕЛЬНО СБРАСЫВАЕМ КЕШ
+ENV CACHE_BUST=20250804_001
+
 # Порт
 EXPOSE 8000
 
