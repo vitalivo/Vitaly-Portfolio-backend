@@ -10,30 +10,31 @@ ALLOWED_HOSTS = [
     '.vercel.app',
     'localhost',
     '127.0.0.1',
-    '0.0.0.0'
+    '0.0.0.0',
+    '*',
 ]
 
-# ✅ Database for development (поддержка Docker)
-if config('DATABASE_URL', default=''):
-    # Docker PostgreSQL
-    DATABASES = {
-        'default': dj_database_url.config(
-            default=config('DATABASE_URL'),
-            conn_max_age=600,
-        )
-    }
-else:
-    # Локальная PostgreSQL (ваши настройки)
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': config('DB_NAME', default='vitaly_portfolio'),
-            'USER': config('DB_USER', default='admin'),
-            'PASSWORD': config('DB_PASSWORD', default='admin123'),
-            'HOST': config('DB_HOST', default='localhost'),
-            'PORT': config('DB_PORT', default='5432'),
-        }
-    }
+# # ✅ Database for development (поддержка Docker)
+# if config('DATABASE_URL', default=''):
+#     # Docker PostgreSQL
+#     DATABASES = {
+#         'default': dj_database_url.config(
+#             default=config('DATABASE_URL'),
+#             conn_max_age=600,
+#         )
+#     }
+# else:
+#     # Локальная PostgreSQL (ваши настройки)
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql',
+#             'NAME': config('DB_NAME', default='vitaly_portfolio'),
+#             'USER': config('DB_USER', default='admin'),
+#             'PASSWORD': config('DB_PASSWORD', default='admin123'),
+#             'HOST': config('DB_HOST', default='localhost'),
+#             'PORT': config('DB_PORT', default='5432'),
+#         }
+#     }
 
 
 

@@ -16,7 +16,6 @@ ALLOWED_HOSTS = [
     '.railway.app',
     'localhost',
     '127.0.0.1',
-    '*',
 ]
 
 # ✅ CORS ДЛЯ ПРОДАКШЕНА
@@ -36,9 +35,11 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 # ✅ БАЗА ДАННЫХ (Railway PostgreSQL)
+import dj_database_url
+
 DATABASES = {
     'default': dj_database_url.config(
-        default=config('DATABASE_URL'),
+        default='postgresql://postgres:ByFMTjoIGObRXjHpLDAMFEUhmTAIgcm@postgres.railway.internal:5432/railway',
         conn_max_age=600,
         conn_health_checks=True,
     )
