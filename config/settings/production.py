@@ -40,7 +40,7 @@ import dj_database_url
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgresql://postgres:ByFMTjoIGObRXjHpLDAMFEUhmTAIgcm@postgres.railway.internal:5432/railway',
+        default='postgresql://postgres:ByFWTjoIGUbRXjHpLDAMFEUnmTAIgcme@postgres.railway.internal:5432/railway',
         conn_max_age=600,
         conn_health_checks=True,
     )
@@ -51,7 +51,7 @@ DATABASES = {
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # ✅ МЕДИА ФАЙЛЫ
 MEDIA_URL = '/media/'
