@@ -4,12 +4,13 @@ import dj_database_url  # ✅ ДОБАВЛЯЕМ для Docker
 # Debug settings
 DEBUG = True
 
-# ✅ ALLOWED_HOSTS для Docker
 ALLOWED_HOSTS = [
+    'vitaly-portfolio-backend-production.up.railway.app',
+    '.railway.app',
+    '.vercel.app',
     'localhost',
     '127.0.0.1',
-    '0.0.0.0',  # для Docker
-    'backend',  # для Docker Compose
+    '0.0.0.0'
 ]
 
 # ✅ Database for development (поддержка Docker)
